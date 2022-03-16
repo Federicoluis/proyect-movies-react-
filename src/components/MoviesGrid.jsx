@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useQuery } from "../hooks/useQuery";
 import { get } from "../utils/httpClient";
 import {MovieCard} from "./MovieCard";
 import styles from "./MoviesGrid.module.css"
 import { Spinner } from "./Spinner";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Empty } from "./Empty";
+import { useSearchParams } from "react-router-dom";
 
 
 
@@ -15,7 +15,7 @@ export function MoviesGrid({ Search }) {
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
 
-    const query = useQuery();
+    const [query] = useSearchParams();
     const search = query.get("search");
 
     useEffect(() =>{
